@@ -1,10 +1,9 @@
 <div class="card mx-auto">
-  <div class="card-header">
+  <div class="card-header text-center">
     {{ title }}
   </div>
 
   <div class="card-body mx-auto">
-    <div class="row justify-content-center pb-3">{{ rating }}</div>
     <div class="row">
       <div class="col-md-2">Search: </div>
       <div class="col-md-4">
@@ -26,7 +25,7 @@
             <th>Code</th>
             <th>Available</th>
             <th>Price</th>
-            <th>5 Star Rating</th>
+            <th>Rating</th>
           </tr>
         </thead>
 
@@ -51,8 +50,10 @@
           </tr>
         </tbody>
 
-      </div>
-    </div>
 
+      </div>
+
+    </div>
+    <div class="row justify-content-center pb-3">{{ rating }}</div>
   </div>
 </div>

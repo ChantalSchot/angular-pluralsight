@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from './product';
 import {ProductService} from './product.service';
+import {Observable} from 'rxjs';
 
 @Component({
-  selector: 'pm-products',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
@@ -13,6 +13,7 @@ export class ProductListComponent implements OnInit {
   imageMargin = 2;
   showImage = false;
   rating: string;
+  errorMessage: string;
   private _listFilter: string;
   filteredProducts: IProduct[];
   products: IProduct[];
@@ -20,8 +21,13 @@ export class ProductListComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.products = this.productService.getProducts();
-    this.filteredProducts = this.products;
+    this.productService.getProducts().subscribe({
+      next: products => {
+        this.products = products;
+        this.filteredProducts = this.products;
+      },
+      error: err => this.errorMessage = err
+    });
   }
 
   get listFilter(): string {
@@ -45,7 +51,7 @@ export class ProductListComponent implements OnInit {
   }
 
   public onRatingClicked(message: string) {
-    if (this.rating) {
+    if (this.rating === message) {
       this.rating = '';
     } else {
       this.rating = message;

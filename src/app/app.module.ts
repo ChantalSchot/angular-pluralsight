@@ -6,17 +6,30 @@ import { ProductListComponent } from './products/product-list.component'
 import { FormsModule } from '@angular/forms';
 import {ConvertCharacterPipe} from './shared/convertCharacter.pipe';
 import {StarComponent} from './shared/star.component';
+import {HttpClientModule} from '@angular/common/http';
+import { ProductDetailComponent } from './products/product-detail.component';
+import {WelcomeComponent} from './home/welcome.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
     ConvertCharacterPipe,
-    StarComponent
+    StarComponent,
+    ProductDetailComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    RouterModule.forRoot([
+      { path: 'welcome', component: WelcomeComponent },
+      { path: 'products', component: ProductListComponent },
+      { path: 'products/:id', component: ProductDetailComponent},
+      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+      { path: '**', redirectTo: 'welcome', pathMatch: 'full' }])
   ],
   bootstrap: [AppComponent]
 })
