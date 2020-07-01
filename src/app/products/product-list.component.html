@@ -1,0 +1,58 @@
+<div class="card mx-auto">
+  <div class="card-header">
+    {{ title }}
+  </div>
+
+  <div class="card-body mx-auto">
+    <div class="row justify-content-center pb-3">{{ rating }}</div>
+    <div class="row">
+      <div class="col-md-2">Search: </div>
+      <div class="col-md-4">
+        <input
+          [(ngModel)]="listFilter"
+          type="text" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 pt-2" *ngIf="listFilter"><p><i>Filtered by: </i>{{ listFilter }}</p></div>
+    </div>
+
+    <div class="table-responsive mx-auto">
+      <div class="table" *ngIf="products && products.length">
+        <thead>
+          <tr>
+            <th><button class="btn btn-primary" (click)="toggleImage()">{{ showImage ? 'Hide' : 'Show' }} images</button></th>
+            <th>Product</th>
+            <th>Code</th>
+            <th>Available</th>
+            <th>Price</th>
+            <th>5 Star Rating</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let p of filteredProducts">
+            <td><img *ngIf="showImage"
+              [src]='p.imageUrl'
+              [title]='p.productName'
+              [style.width.px]='imageWidth'
+              [style.margin.px]='imageMargin'
+            /></td>
+            <td>{{ p.productName }}</td>
+            <td>{{ p.productCode | lowercase | convertCharacter:'-':' ' }}</td>
+            <td>{{ p.releaseDate }}</td>
+            <td>{{ p.price | currency:'USD':'symbol':'1.2-2' }}</td>
+            <td>
+              <pm-star
+                [rating]="p.starRating"
+                (ratingClicked)="onRatingClicked($event)"
+              ></pm-star>
+            </td>
+          </tr>
+        </tbody>
+
+      </div>
+    </div>
+
+  </div>
+</div>

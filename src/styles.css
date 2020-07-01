@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+div .card-header {
+ font-size: large;
+}
+
+div .card {
+  margin-top: 10px;
+  width: 60%;
+  text-align: center;
+}
+
+div .card .row {
+  text-align: left;
+}
+
+.table {
+  margin-top: 10px;
+}
