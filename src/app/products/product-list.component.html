@@ -30,7 +30,7 @@
         </thead>
 
         <tbody>
-          <tr *ngFor="let p of filteredProducts">
+          <tr *ngFor="let p of filteredProducts" [routerLink]=['/products/p.productId']>
             <td><img *ngIf="showImage"
               [src]='p.imageUrl'
               [title]='p.productName'
