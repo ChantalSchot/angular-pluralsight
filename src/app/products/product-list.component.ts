@@ -22,11 +22,11 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe({
-      next: products => {
-        this.products = products;
-        this.filteredProducts = this.products;
-      },
-      error: err => this.errorMessage = err
+        next: products => {
+          this.products = products;
+          this.filteredProducts = this.products;
+        },
+        error: err => this.errorMessage = err
     });
   }
 

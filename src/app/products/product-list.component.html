@@ -30,14 +30,14 @@
         </thead>
 
         <tbody>
-          <tr *ngFor="let p of filteredProducts" [routerLink]=['/products/p.productId']>
+          <tr *ngFor="let p of filteredProducts">
             <td><img *ngIf="showImage"
               [src]='p.imageUrl'
               [title]='p.productName'
               [style.width.px]='imageWidth'
               [style.margin.px]='imageMargin'
             /></td>
-            <td>{{ p.productName }}</td>
+            <td><a [routerLink]="['/products', p.productId]">{{ p.productName }}</a></td>
             <td>{{ p.productCode | lowercase | convertCharacter:'-':' ' }}</td>
             <td>{{ p.releaseDate }}</td>
             <td>{{ p.price | currency:'USD':'symbol':'1.2-2' }}</td>
